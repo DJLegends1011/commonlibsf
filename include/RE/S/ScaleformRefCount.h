@@ -28,7 +28,7 @@ namespace RE::Scaleform
 		void AddRef()
 		{
 			REX::TAtomicRef myRefCount{ refCount };
-			++refCount;
+			++myRefCount;
 		}
 
 		void Release()

@@ -51,8 +51,12 @@ namespace RE
 		virtual ~InputEvent() = default;  // 00
 
 		// add
-		virtual bool                HasIDCode() const { return false; }
-		virtual const BSFixedString QUserEvent() const { return ""; }
+		virtual bool                 HasIDCode() const { return false; }
+		virtual const BSFixedString& QUserEvent() const
+		{
+			static const BSFixedString empty;
+			return empty;
+		}
 
 		// members
 		DeviceType    deviceType{ DeviceType::kNone };             // 08
@@ -76,9 +80,11 @@ namespace RE
 		// override (InputEvent)
 		virtual bool HasIDCode() const override { return true; }
 
-		virtual const BSFixedString QUserEvent() const override
+		virtual const BSFixedString& QUserEvent() const override
 		{
-			return disabled ? "DISABLED" : strUserEvent;
+			using func_t = const BSFixedString& (*)(const IDEvent*);
+			static REL::Relocation<func_t> func{ ID::IDEvent::QUserEvent };
+			return func(this);
 		}
 
 		// members
@@ -149,6 +155,13 @@ namespace RE
 		}
 
 		SF_HEAP_REDEFINE_NEW(BSInputEventUser);
+
+		void DispatchEvent(const InputEvent* a_event)
+		{
+			using func_t = decltype(&BSInputEventUser::DispatchEvent);
+			static REL::Relocation<func_t> func{ ID::BSInputEventUser::DispatchEvent };
+			func(this, a_event);
+		}
 
 		// members
 		std::uint8_t pad08[0x30];                        // 08

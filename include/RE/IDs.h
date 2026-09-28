@@ -430,6 +430,11 @@ namespace RE::ID
 		inline constexpr REL::ID Unlock{ 35630 };
 	}
 
+	namespace BSStringT
+	{
+		inline constexpr REL::ID Assign{ 36345 };
+	}
+
 	namespace BSStringPool
 	{
 		namespace Entry

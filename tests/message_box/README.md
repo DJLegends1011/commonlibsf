@@ -37,4 +37,6 @@ The tests link the actual library implementation and `REL::Relocation`. Only the
 
 ## Runtime validation status
 
-The native implementation has **not yet been tested in game**. The previously working example plugin called the Papyrus wrapper and is not runtime validation of this change. Test the native helper in Starfield 1.16.244 before marking the PR ready. Other executable versions have not been investigated; Address Library indirection alone does not establish ABI compatibility.
+The author tested the native implementation in **Starfield 1.16.244** on September 28, 2026, using an SFSE consumer built against this contribution. The startup message appeared with the expected text and OK button; the author supplied a screenshot and confirmed that clicking OK closed it normally. This consumer calls `RE::DebugMessageBox` directly after `kPostDataLoad` through an SFSE game-thread task.
+
+The tested DLL's SHA-256 is `feedc7e96950a0949d8cd99a56b317f76903ed71e63f80159c1be1ca5c66bcac`. This establishes basic in-game display and dismissal for that build, not exhaustive memory/lifetime testing. Other executable versions have not been investigated; Address Library indirection alone does not establish ABI compatibility.

@@ -451,11 +451,6 @@ namespace RE::ID
 		inline constexpr REL::ID GetEntryW{ 1186743 };
 	}
 
-	namespace BSStringT
-	{
-		inline constexpr REL::ID Assign{ 36345 };
-	}
-
 	namespace BSStorage
 	{
 		inline constexpr REL::ID FlushStreamBuffer{ 0 };    // 72433
@@ -1355,7 +1350,6 @@ namespace RE::ID
 	{
 		inline constexpr REL::ID Singleton{ 938019 };
 		inline constexpr REL::ID CreateMessageBox{ 114231 };
-		inline constexpr REL::ID DestroyMessageBoxParams{ 43998 };
 	}
 
 	namespace Misc

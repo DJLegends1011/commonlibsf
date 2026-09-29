@@ -9,9 +9,10 @@
 
 namespace RE
 {
-	// Queues a DEBUG message with the game's localized OK button. Call on the
-	// game thread after data loads. Does nothing if the message manager is absent.
-	void DebugMessageBox(const char* a_message);
+	// Queues a message with the game's localized OK button. Call on the game
+	// thread after data loads. A null message is empty; a null header uses DEBUG.
+	// Does nothing if the message manager is absent.
+	void DebugMessageBox(const char* a_message, const char* a_header = "DEBUG");
 
 	inline void DebugNotification(const char* a_notification, const char* a_soundToPlay = nullptr, bool a_cancelIfAlreadyQueued = true, bool a_arg4 = false)
 	{
